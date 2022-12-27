@@ -6,12 +6,17 @@ docker images OR docker image list
 docker run -d -p 5000:80 dncapp-image
 
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+az account set --name ME-MngEnvMCAP779795-jamesvac-1
+az acr login -n jfvacr.azurecr.io
+
 az account set --name MSFT-Jamesvac
 az acr login -n acrhackfestjim11437
+
 az acr list -o table
-LOGIN SERVER: acrhackfestjim11437.azurecr.io
-docker tag dncapp-image acrhackfestjim11437.azurecr.io/dncapp:remote-v
+
+LOGIN SERVER: jfvacr.azurecr.io
+docker tag dncapp-image jfvacr.azurecr.io/dncapp:remote-v
 docker images
-docker push acrhackfestjim11437.azurecr.io/dncapp:remote-v1
+docker push jfvacr.azurecr.io/dncapp:remote-v1
 
 

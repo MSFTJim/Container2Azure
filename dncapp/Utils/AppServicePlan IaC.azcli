@@ -1,4 +1,5 @@
 az login
+az account set --name ME-MngEnvMCAP779795-jamesvac-1
 
 
 az resource list --output table
