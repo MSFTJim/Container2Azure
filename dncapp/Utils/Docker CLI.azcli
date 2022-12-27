@@ -1,4 +1,6 @@
+docker build . -t dncapp-image -f dockerfile
 docker ps
+docker ps -a [-q]
 docker kill [name]
 docker images OR docker image list
 docker run -d -p 5000:80 dncapp-image
@@ -11,3 +13,5 @@ LOGIN SERVER: acrhackfestjim11437.azurecr.io
 docker tag dncapp-image acrhackfestjim11437.azurecr.io/dncapp:remote-v
 docker images
 docker push acrhackfestjim11437.azurecr.io/dncapp:remote-v1
+
+

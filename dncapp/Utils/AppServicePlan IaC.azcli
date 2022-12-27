@@ -1,0 +1,21 @@
+az login
+
+
+az resource list --output table
+az resource list -g myCLIRG --query "[?contains(name, 'jfv')]" -o table
+az resource list --resource-type 
+
+az webapp config show --resource-group myResourceGroup --name <app-name> --query linuxFxVersion
+az webapp list-runtimes --os-type linux
+
+# This is the template to create a resource group and run a bicep file
+az group create --name myResourceGroup2 --location "eastus2" &&
+az deployment group create --resource-group myResourceGroups --template-file <path-to-template>
+# end template
+
+# az group create --name rg-AppServices --location "eastus2" &&
+az deployment group create --resource-group rg-AppServices --template-file dncapp/Utils/AppServicePlan.bicep
+
+az deployment group create --resource-group rg-AppServices --template-file dncapp/Utils/AppService.bicep
+
+
