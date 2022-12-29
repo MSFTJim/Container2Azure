@@ -24,11 +24,11 @@ jobs:
         password: ${{ secrets.ACR_PASSWORD }}
 
     - run: |
-        docker build . -t jfvacr.azurecr.io/C2Aapp-ContainerD2I1:${{ github.sha }}
-        docker push jfvacr.azurecr.io/C2Aapp-ContainerD2I1:${{ github.sha }}     
+        docker build . -t jfvacr.azurecr.io/dncapp:${{ github.sha }}
+        docker push jfvacr.azurecr.io/dncapp:${{ github.sha }}     
 
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'myapp'
         publish-profile: ${{ secrets.WEBAPPC2A }}
-        images: 'jfvacr.azurecr.io/C2Aapp-ContainerD2I1:${{ github.sha }}'
+        images: 'jfvacr.azurecr.io/dncapp:${{ github.sha }}'
