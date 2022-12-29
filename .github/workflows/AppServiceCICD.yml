@@ -30,6 +30,6 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'myapp'
+        # app-name: 'myapp'
         publish-profile: ${{ secrets.WEBAPPC2A }}
         images: 'jfvacr.azurecr.io/dncapp:${{ github.sha }}'
