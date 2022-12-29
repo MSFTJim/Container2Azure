@@ -24,6 +24,7 @@ jobs:
         password: ${{ secrets.ACR_PASSWORD }}
 
     - run: |
+        cd dncapp
         docker build . -t jfvacr.azurecr.io/dncapp:${{ github.sha }}
         docker push jfvacr.azurecr.io/dncapp:${{ github.sha }}     
 
