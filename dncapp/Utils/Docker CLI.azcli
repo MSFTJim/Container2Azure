@@ -12,11 +12,20 @@ az acr login -n jfvacr.azurecr.io
 az account set --name MSFT-Jamesvac
 az acr login -n acrhackfestjim11437
 
+
 az acr list -o table
 
 LOGIN SERVER: jfvacr.azurecr.io
 docker tag dncapp-image jfvacr.azurecr.io/dncapp:remote-v
 docker images
 docker push jfvacr.azurecr.io/dncapp:remote-v1
+
+
+LOGIN SERVER: pluralacrusa.azurecr.io
+az acr login -n pluralacrusa
+docker tag dncapp-image pluralacrusa.azurecr.io/dncapp:remote-v1
+docker images
+docker push pluralacrusa.azurecr.io/dncapp:remote-v1
+
 
 

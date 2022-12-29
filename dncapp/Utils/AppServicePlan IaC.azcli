@@ -1,5 +1,13 @@
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
 az login
 az account set --name ME-MngEnvMCAP779795-jamesvac-1
+az account set --name MPN-MAPS-timrobertsusa
+az account show
+MPN-MAPS-timrobertsusa
+pluralsite
+
+
 
 
 az resource list --output table
@@ -17,11 +25,17 @@ az deployment group create --resource-group myResourceGroups --template-file <pa
 # az group create --name rg-AppServices --location "eastus2" &&
 az deployment group create --resource-group rg-AppServices --template-file dncapp/Utils/AppServicePlan.bicep
 
-az deployment group create --resource-group rg-AppServices --template-file dncapp/Utils/AppService.bicep
+# plural
+#az group create --name rg-AppServices --location "eastus" &&
+az deployment group create --resource-group rg-AppServices --template-file Utils/AppServicePlanPlural.bicep
+
+az deployment group create --resource-group rg-AppServices --template-file dncapp/Utils/AppServicePlural.bicep
 
 
 az ad sp list --display-name 'C2Aapp-Container01'
 az ad sp list --all --filter "servicePrincipalType eq 'ManagedIdentity'"
 az ad sp list --all --display-name 'C2Aapp-Container01' --filter "servicePrincipalType eq 'ManagedIdentity'" --query "id"
 objectid=$(az ad sp list --display-name <Azure resource name> --query [].id --output tsv)
-objectid=$(az ad sp list --display-name 'C2Aapp-Container01' --query [].id --output tsv)
+
+
+
