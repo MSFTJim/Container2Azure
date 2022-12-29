@@ -5,7 +5,10 @@ on:
 #   push:
 #     branches: main
 #     paths:
-#     - 'dnc/**'
+#     - 'dncapp/**'
+
+env:
+  ACR_LOGIN_SERVER: jfvacr.azurecr.io  
   
 jobs:
   build:
@@ -16,16 +19,16 @@ jobs:
 
     - uses: azure/docker-login@v1
       with:
-        login-server: mycontainer.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        login-server: jfvacr.azurecr.io
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
 
     - run: |
-        docker build . -t mycontainer.azurecr.io/myapp:${{ github.sha }}
-        docker push mycontainer.azurecr.io/myapp:${{ github.sha }}     
+        docker build . -t jfvacr.azurecr.io/C2Aapp-ContainerD2I1:${{ github.sha }}
+        docker push jfvacr.azurecr.io/C2Aapp-ContainerD2I1:${{ github.sha }}     
 
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'myapp'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: 'mycontainer.azurecr.io/myapp:${{ github.sha }}'
+        publish-profile: ${{ secrets.WEBAPPC2A }}
+        images: 'jfvacr.azurecr.io/C2Aapp-ContainerD2I1:${{ github.sha }}'
