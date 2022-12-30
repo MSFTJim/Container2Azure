@@ -1,0 +1,31 @@
+name: Context testing
+on:  
+  workflow_dispatch:
+
+jobs:
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub sha
+        id: github.sha
+      - name: Get short SHA
+        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+      - name: Print short SHA
+        run: echo "Short SHA is ${{ env.SHORT_SHA }}"  
+      - name: Get Rev-Parse
+        run: echo "Short_SHA2=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
+      - name: Print Rev-Parse
+        run: echo "Short SHA2 is ${{ env.SHORT_SHA2 }}"  
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
