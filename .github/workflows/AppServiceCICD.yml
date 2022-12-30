@@ -9,6 +9,7 @@ on:
 
 env:
   ACR_LOGIN_SERVER: jfvacr.azurecr.io  
+  APP_NAME: dncapp
   
 jobs:
   build:
@@ -19,17 +20,17 @@ jobs:
 
     - uses: azure/docker-login@v1
       with:
-        login-server: jfvacr.azurecr.io
+        login-server: ${{ env.ACR_LOGIN_SERVER }}        
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
 
     - run: |
         cd dncapp
-        docker build . -t jfvacr.azurecr.io/dncapp:${{ github.sha }}
-        docker push jfvacr.azurecr.io/dncapp:${{ github.sha }}     
+        docker build . -t ${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}
+        docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}     
 
     - uses: azure/webapps-deploy@v2
       with:
         # app-name: 'myapp'
         publish-profile: ${{ secrets.WEBAPPC2A }}
-        images: 'jfvacr.azurecr.io/dncapp:${{ github.sha }}'
+        images: '${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}'
