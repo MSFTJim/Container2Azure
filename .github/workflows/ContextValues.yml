@@ -9,14 +9,14 @@ jobs:
     steps:
       - name: Dump GitHub sha        
         run: echo '${{ github.sha }}'
-      - name: Get short SHA
-        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
-      - name: Print short SHA
-        run: echo "Short SHA is ${{ env.SHORT_SHA }}"  
+      #- name: Get short SHA
+      #  run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+      #- name: Print short SHA
+      #  run: echo "Short SHA is ${{ env.SHORT_SHA }}"  
       - name: Get Rev-Parse
-        run: echo "Short_SHA2=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
-      - name: Print Rev-Parse
-        run: echo "Short SHA2 is ${{ env.SHORT_SHA2 }}"  
+        run: echo "Short_HEAD=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
+      - name: Print Short HEAD
+        run: echo "Short HEAD is ${{ env.Short_HEAD }}"  
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
