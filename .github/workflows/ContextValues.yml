@@ -7,8 +7,7 @@ jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub sha
-        id: github.sha
+      - name: Dump GitHub sha        
         run: echo '${{ github.sha }}'
       - name: Get short SHA
         run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
