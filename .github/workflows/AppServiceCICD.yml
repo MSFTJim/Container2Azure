@@ -40,7 +40,8 @@ jobs:
       with:
          # app-name: 'myapp'
          publish-profile: ${{ secrets.WEBAPPC2A }}
-         images: '${{env.CONTAINER_TAG}}'
+         images: ${{env.CONTAINER_TAG}}
+    - run: echo ${{env.CONTAINER_TAG}} 
 
 
 # - name: Set Up Env Var1
