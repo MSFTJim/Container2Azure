@@ -17,6 +17,8 @@ jobs:
         run: echo "Cut_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
       - name: Run Cut cmd on SHA
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"  
+      - name: Tim Test  
+        run: echo "Cut SHA is "env.Cut_SHA
       - name: Get Rev-Parse
         run: echo "Rev_Parse=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
       - name: Print Rev_Parse
