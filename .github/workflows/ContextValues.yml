@@ -20,7 +20,7 @@ jobs:
       - name: Concat 2 vars
         run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${GITHUB_SHA}`" >> $GITHUB_ENV  
       - name: Print Concat 2 vars
-        run: echo "ConcatVar is ${{ env.ConcatVar }}          
+        run: echo "ConcatVar is ${{ env.ConcatVar }}"          
       - name: Tim Test  
         run: echo "Cut SHA is "env.Cut_SHA
       - name: Get Rev-Parse
