@@ -27,7 +27,9 @@ jobs:
     - run: |
         cd dncapp
         echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
+        echo ${{ env.SHORT_SHA }}
         echo "CONTAINER_TAG='echo ${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}'" >> $GITHUB_ENV  
+        echo ${{env.CONTAINER_TAG}}
         docker build . -t ${{env.CONTAINER_TAG}}
         docker push ${{env.CONTAINER_TAG}}
 
