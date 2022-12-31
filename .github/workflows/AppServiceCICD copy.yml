@@ -1,0 +1,50 @@
+name: AppService Linux Container C# Workflow2
+
+on: 
+  workflow_dispatch:
+#   push:
+#     branches: main
+#     paths:
+#     - 'dncapp/**'
+
+env:
+  ACR_LOGIN_SERVER: jfvacr.azurecr.io  
+  APP_NAME: dncapp
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.ACR_LOGIN_SERVER }}        
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}     
+           
+      run: |
+        cd dncapp    
+        #docker build . -t ${{env.CONTAINER_TAG}}
+        docker build . -t 'firetruck'
+       # docker push ${{env.CONTAINER_TAG}}
+    
+    # - name: Set Up Env Var1
+    #   run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
+    # - name: Print Env Var1
+    #   run: echo ${{env.SHORT_SHA}}        
+    # - name: Set Up Env Var2
+    #   run: echo "CONTAINER_TAG='echo ${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}'" >> $GITHUB_ENV  
+    # - name: Print Env Var2
+    #   run: echo ${{env.CONTAINER_TAG}}
+
+    # name: Docker Steps
+   
+
+    # name: Web app Deploy2
+    - uses: azure/webapps-deploy@v2
+      with:
+         # app-name: 'myapp'
+         publish-profile: ${{ secrets.WEBAPPC2A }}
+         images: '${{env.CONTAINER_TAG}}'

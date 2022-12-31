@@ -1,0 +1,25 @@
+name: CICD Clean
+
+on: 
+  workflow_dispatch:
+env:
+  ACR_LOGIN_SERVER: jfvacr.azurecr.io  
+  APP_NAME: dncapp
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v2
+        - uses: azure/docker-login@v1
+          with:
+            login-server: ${{ env.ACR_LOGIN_SERVER }}        
+            username: ${{ secrets.ACR_USERNAME }}
+            password: ${{ secrets.ACR_PASSWORD }}
+        - run: |
+            cd dncapp    
+            echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
+            echo "CONTAINER_TAG='echo ${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}'" >> $GITHUB_ENV  
+            docker build . -t ${{env.CONTAINER_TAG}}        
+            docker push ${{env.CONTAINER_TAG}}   
