@@ -6,17 +6,21 @@ on:
 jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
+    
+       
+    
     steps:
+      - uses: actions/checkout@v2
       - name: Dump GitHub sha        
         run: echo '${{ github.sha }}'
-      #- name: Get short SHA
-      #  run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
-      #- name: Print short SHA
-      #  run: echo "Short SHA is ${{ env.SHORT_SHA }}"  
+      - name: Run Cut cmd on SHA
+        run: echo "Cut_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
+      - name: Run Cut cmd on SHA
+        run: echo "Cut SHA is ${{ env.Cut_SHA }}"  
       - name: Get Rev-Parse
-        run: echo "Short_HEAD=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
-      - name: Print Short HEAD
-        run: echo "Short HEAD is ${{ env.Short_HEAD }}"  
+        run: echo "Rev_Parse=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
+      - name: Print Rev_Parse
+        run: echo "Rev_Parse is ${{ env.Rev_Parse }}"  
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
