@@ -15,10 +15,10 @@ jobs:
         run: echo '${{ github.sha }}'
       - name: Run Cut cmd on SHA
         run: echo "Cut_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV          
-      - name: Run Cut cmd on SHA
+      - name: Print Cut cmd on SHA
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"          
       - name: Concat 2 vars
-        run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${GITHUB_SHA}`" >> $GITHUB_ENV  
+        run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${{GITHUB_SHA}}`" >> $GITHUB_ENV          
       - name: Print Concat 2 vars
         run: echo "ConcatVar is ${{ env.ConcatVar }}"          
       - name: Tim Test  
