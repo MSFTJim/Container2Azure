@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Var Set Up1
-      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
+      run: echo "SHORT_SHA=`FireTruck ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
     - name: Var Print1
       run: echo ${{env.SHORT_SHA}}  
     - name: setup 2
