@@ -18,7 +18,7 @@ jobs:
       - name: Print Cut cmd on SHA
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"          
       - name: Concat 2 vars
-        run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${{GITHUB_SHA}}`" >> $GITHUB_ENV          
+        run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${{github.sha}}`" >> $GITHUB_ENV          
       - name: Print Concat 2 vars
         run: echo "ConcatVar is ${{ env.ConcatVar }}"          
       - name: Tim Test  
