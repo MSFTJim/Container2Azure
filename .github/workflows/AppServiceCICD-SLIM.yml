@@ -16,16 +16,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.6.0
     
     - name: Create Short SHA
       run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
     - name: Create fully qualififed container name with tag
       run: echo "CONTAINER_TAG=${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}" >> $GITHUB_ENV  
 
-    - uses: azure/docker-login@v1
+    - uses: azure/docker-login@v2.1.0
       with:
-        login-server: ${{ env.ACR_LOGIN_SERVER }}        
+        registry:: ${{ env.ACR_LOGIN_SERVER }}        
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     - run: |
@@ -33,7 +33,7 @@ jobs:
           docker build . -t ${{env.CONTAINER_TAG}}        
           docker push ${{env.CONTAINER_TAG}}   
 
-    - uses: azure/webapps-deploy@v2
+    - uses: azure/webapps-deploy@v2.2.5
       with:
          # app-name: 'myapp'
          publish-profile: ${{ secrets.WEBAPPC2A }}
