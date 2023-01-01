@@ -17,10 +17,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set Variables
-      run: |
-        echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
-        echo "CONTAINER_TAG=${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}" >> $GITHUB_ENV  
+    
+    - name: Create Short SHA
+      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
+    - name: Create fully qualififed container name with tag
+      run: echo "CONTAINER_TAG=${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}" >> $GITHUB_ENV  
 
     - uses: azure/docker-login@v1
       with:
