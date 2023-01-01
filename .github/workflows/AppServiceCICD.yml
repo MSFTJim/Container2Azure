@@ -22,7 +22,7 @@ jobs:
     - name: Var Print1
       run: echo ${{env.SHORT_SHA}}  
     - name: setup 2
-      run: echo "CONTAINER_TAG='${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}'" >> $GITHUB_ENV  
+      run: echo "CONTAINER_TAG=${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}" >> $GITHUB_ENV  
     - name: print 2
       run: echo ${{env.CONTAINER_TAG}}
     - uses: azure/docker-login@v1
