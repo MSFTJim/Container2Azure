@@ -22,10 +22,10 @@ jobs:
       run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV  
     - name: Create fully qualififed container name with tag
       run: echo "CONTAINER_TAG=${{ env.ACR_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{ env.SHORT_SHA }}" >> $GITHUB_ENV  
-
-    - uses: azure/docker-login@v2.1.0
+            
+    - uses: azure/docker-login@v1
       with:
-        registry:: ${{ env.ACR_LOGIN_SERVER }}        
+        login-server: ${{ env.ACR_LOGIN_SERVER }}        
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     - run: |
