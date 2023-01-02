@@ -27,15 +27,22 @@ jobs:
         run: echo "Cut_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV          
       - name: Print Cut cmd on SHA
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"          
+        
+      - name: Run Cut cmd on SHA2
+        run: echo "Cut_SHA=echo ${GITHUB_SHA} | cut -c 1-7" >> $GITHUB_ENV          
+      - name: Print Cut cmd on SHA2
+        run: echo "Cut SHA is ${{ env.Cut_SHA }}"       
       
       - name: Concat 2 vars
         run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${{github.sha}}`" >> $GITHUB_ENV          
       - name: Print Concat 2 vars
         run: echo "ConcatVar is ${{ env.ConcatVar }}"          
+      
       - name: Tim Test  
         run: echo "Cut SHA is "env.Cut_SHA
       - name: Get Rev-Parse
         run: echo "Rev_Parse=`git rev-parse --short HEAD`" >> $GITHUB_ENV  
+        
       - name: Print Rev_Parse
         run: echo "Rev_Parse is ${{ env.Rev_Parse }}"  
       - name: Dump GitHub context
