@@ -6,7 +6,19 @@ on:
 
 env:
   ISSUE_TO_CLOSE: 2  
+  HELLO_WORLD: 'Hello World'
   
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2.6.0
+    
+    - name: Create Short SHA
+      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV 
+      
+    - name: hello world
+      run: echo 'hello world'
+    - name: hello world var
+      run: echo $HELLO_WORLD
