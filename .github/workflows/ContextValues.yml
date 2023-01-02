@@ -20,8 +20,8 @@ jobs:
         run: echo $GITHUB_SHA
       - name: Var3 with just $        
         run: echo ${GITHUB_SHA}
-      - name: Var3 with just $        
-        run: echo ${{GITHUB_SHA}}
+     # - name: Var3 with just $        
+     #   run: echo ${{GITHUB_SHA}}
       
       - name: Run Cut cmd on SHA
         run: echo "Cut_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV          
