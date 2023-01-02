@@ -20,5 +20,9 @@ jobs:
       
     - name: Show Inputs
       run: echo "${{ toJSON(github.event.inputs) }}"
+      
+    - name: hello input
+      run: echo $TimIssue
+      
     - name: hello world var
       run: echo $HELLO_WORLD
