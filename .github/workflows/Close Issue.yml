@@ -2,6 +2,9 @@ name: Close Tim's Issue
 
 on: 
   workflow_dispatch:
+     inputs:
+      TimIssue:
+        default: "my input value"
 
 
 env:
@@ -14,11 +17,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2.6.0
-    
-    - name: Create Short SHA
-      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV 
       
-    - name: hello world
-      run: echo 'hello world'
+    - name: Show Inputs
+      run: echo "${{ toJSON(github.event.inputs) }}"
     - name: hello world var
       run: echo $HELLO_WORLD
