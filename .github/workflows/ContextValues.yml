@@ -15,12 +15,19 @@ jobs:
         run: echo '${{ github.sha }}'
       - name: Var with just $        
         run: echo '${github.sha}'
+        
       - name: Var2 with just $        
         run: echo $GITHUB_SHA
+      - name: Var3 with just $        
+        run: echo ${GITHUB_SHA}
+      - name: Var3 with just $        
+        run: echo ${{GITHUB_SHA}}
+      
       - name: Run Cut cmd on SHA
         run: echo "Cut_SHA=`echo ${GITHUB_SHA} | cut -c 1-7`" >> $GITHUB_ENV          
       - name: Print Cut cmd on SHA
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"          
+      
       - name: Concat 2 vars
         run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${{github.sha}}`" >> $GITHUB_ENV          
       - name: Print Concat 2 vars
