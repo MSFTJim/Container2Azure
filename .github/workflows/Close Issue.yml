@@ -1,0 +1,12 @@
+name: Close Tim's Issue
+
+on: 
+  workflow_dispatch:
+
+
+env:
+  ISSUE_TO_CLOSE: 2  
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
