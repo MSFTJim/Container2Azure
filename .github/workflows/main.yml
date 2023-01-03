@@ -1,0 +1,23 @@
+name: VisualizeTim
+
+on:  
+ workflow_dispatch:
+ 
+jobs:
+ crawl:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v2
+   - run: echo 'Crawl'
+ walk:
+  needs: [crawl]
+  runs-on: ubuntu-latest
+  steps: 
+   - run: echo 'Walk needs Crawl' 
+ run:  
+  needs: [walk]
+  runs-on: ubuntu-latest
+  steps: 
+   - run: echo 'Run needs Walk' 
+  
+ 
