@@ -28,10 +28,16 @@ jobs:
       - name: Print Cut cmd on SHA
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"          
         
+      # cut SHA2 runs successfully but does not produce the results we want
       - name: Run Cut cmd on SHA2
         run: echo "Cut_SHA=echo ${GITHUB_SHA} | cut -c 1-7" >> $GITHUB_ENV          
       - name: Print Cut cmd on SHA2
-        run: echo "Cut SHA is ${{ env.Cut_SHA }}"       
+        run: echo "Cut SHA is ${{ env.Cut_SHA }}"             
+     
+      - name: Run Slice cmd on SHA
+        run: echo "Slice_SHA='echo ${GITHUB_SHA:0:7}'" >> $GITHUB_ENV          
+      - name: Print Slice cmd on SHA
+        run: echo "Cut SHA is ${{ env.Slice_SHA }}"       
       
       - name: Concat 2 vars
         run: echo "ConcatVar=`${{ env.Cut_SHA }}boo${{github.sha}}`" >> $GITHUB_ENV          
