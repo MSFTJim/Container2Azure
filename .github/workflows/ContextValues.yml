@@ -13,8 +13,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Dump GitHub sha        
         run: echo '${{ github.sha }}'
-      - name: Var with just $        
+      - name: Var with quote & {        
         run: echo '${github.sha}'
+      - name: Var with just {     
+        run: echo ${github.sha}
         
       - name: Var2 with just $        
         run: echo $GITHUB_SHA
