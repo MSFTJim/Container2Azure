@@ -23,6 +23,8 @@ jobs:
         run: echo $GITHUB_SHA
       - name: Var3 with just $        
         run: echo ${GITHUB_SHA}
+      - name: Var3 with just $ & '       
+        run: echo '${GITHUB_SHA}'  
      # - name: Var3 with just $        
      #   run: echo ${{GITHUB_SHA}}
       
