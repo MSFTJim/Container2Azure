@@ -35,7 +35,7 @@ jobs:
         run: echo "Cut SHA is ${{ env.Cut_SHA }}"             
      
       - name: Run Slice cmd on SHA
-        run: echo "Slice_SHA='echo ${GITHUB_SHA:0:7}'" >> $GITHUB_ENV          
+        run: echo "Slice_SHA=${GITHUB_SHA:0:7}" >> $GITHUB_ENV          
       - name: Print Slice cmd on SHA
         run: echo "Cut SHA is ${{ env.Slice_SHA }}"       
       
