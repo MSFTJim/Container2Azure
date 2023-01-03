@@ -33,4 +33,4 @@ jobs:
       with:
           issue-number: ${{ inputs.TimIssue }} 
           comment: Auto-closing issue
-          close-reason: resolved
+          close-reason: not planned
