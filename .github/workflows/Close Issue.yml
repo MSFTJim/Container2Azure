@@ -27,3 +27,10 @@ jobs:
       
     - name: hello world var
       run: echo $HELLO_WORLD
+    
+    - name: Close Issue
+      uses: peter-evans/close-issue@v2
+      with:
+          issue-number: ${{ inputs.TimIssue }} 
+          comment: Auto-closing issue
+          close-reason: "Tim said so!"
