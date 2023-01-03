@@ -12,11 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Dump GitHub sha        
-        run: echo '${{ github.sha }}'
+        run: echo ${{ github.sha }}
       - name: Var with quote & {        
         run: echo '${github.sha}'
-      - name: Var with just {     
-        run: echo ${github.sha}
+      # causes error, variable does not exist
+      #- name: Var with just {     
+      #  run: echo ${github.sha}
         
       - name: Var2 with just $        
         run: echo $GITHUB_SHA
