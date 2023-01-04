@@ -24,20 +24,11 @@ jobs:
   runs-on: ubuntu-latest
   steps:   
    - run: echo 'Deploy on Azure'    
- crawl:
-  runs-on: ubuntu-latest
-  steps:
-   - uses: actions/checkout@v2
-   - run: echo 'Crawl'
- walk:
-  needs: [crawl]
-  runs-on: ubuntu-latest
-  steps: 
-   - run: echo 'Walk needs Crawl' 
- run:  
-  needs: [walk]
-  runs-on: ubuntu-latest
-  steps: 
-   - run: echo 'Run needs Walk' 
-  
+ deploy-to-test: 
+   needs: [build-azure] 
+   runs-on: ubuntu-latest
+   steps:   
+    - run: echo 'Deploy to Test Environment'  
+ 
+
  
