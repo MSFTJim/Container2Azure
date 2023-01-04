@@ -39,8 +39,18 @@ jobs:
    runs-on: ubuntu-latest
    steps:   
     - run: echo 'Deploy to QA'  
- manual-approval: 
+ perf-test: 
    needs: [system-test] 
+   runs-on: ubuntu-latest
+   steps:   
+    - run: echo 'Performance Test'  
+ smoke-test:  
+   needs: [system-test] 
+   runs-on: ubuntu-latest
+   steps:   
+    - run: echo 'Smoke Test'     
+ manual-approval: 
+   needs: [perf-test, smoke-test] 
    runs-on: ubuntu-latest
    steps:   
     - run: echo 'Wait for Manual Approval'  
