@@ -1,0 +1,43 @@
+name: VisualizeTim
+
+on:  
+ workflow_dispatch:
+ 
+jobs:
+ build-azure: 
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v2
+   - run: echo 'Build on Azure'
+ smoke-test-azure: 
+  needs: [build-azure]
+  runs-on: ubuntu-latest
+  steps:   
+   - run: echo 'Test on Azure'  
+ qa-test-azure: 
+  needs: [build-azure]
+  runs-on: ubuntu-latest
+  steps:   
+   - run: echo 'Test on Azure'    
+ deploy-azure: 
+  needs: [smoke-test-azure, qa-test-azure]
+  runs-on: ubuntu-latest
+  steps:   
+   - run: echo 'Deploy on Azure'    
+ crawl:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v2
+   - run: echo 'Crawl'
+ walk:
+  needs: [crawl]
+  runs-on: ubuntu-latest
+  steps: 
+   - run: echo 'Walk needs Crawl' 
+ run:  
+  needs: [walk]
+  runs-on: ubuntu-latest
+  steps: 
+   - run: echo 'Run needs Walk' 
+  
+ 
