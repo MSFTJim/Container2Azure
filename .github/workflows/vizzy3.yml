@@ -4,31 +4,51 @@ on:
  workflow_dispatch:
  
 jobs:
- build-azure: 
+ build-app: 
   runs-on: ubuntu-latest
   steps:
    - uses: actions/checkout@v2
    - run: echo 'Build on Azure'
- smoke-test-azure: 
-  needs: [build-azure]
+ unit-test: 
+  needs: [build-app]
   runs-on: ubuntu-latest
   steps:   
-   - run: echo 'Test on Azure'  
- qa-test-azure: 
-  needs: [build-azure]
+   - run: echo 'Unit Test'  
+ integration-test: 
+  needs: [unit-test]
   runs-on: ubuntu-latest
   steps:   
-   - run: echo 'Test on Azure'    
- deploy-azure: 
-  needs: [smoke-test-azure, qa-test-azure]
+   - run: echo 'Integration Test'   
+ deploy-to-dev-env: 
+  needs: [unit-test]
   runs-on: ubuntu-latest
   steps:   
-   - run: echo 'Deploy on Azure'    
- deploy-to-test: 
-   needs: [build-azure] 
+   - run: echo 'Deploy to Dev Env'   
+ system-test: 
+  needs: [integration-test]
+  runs-on: ubuntu-latest
+  steps:   
+   - run: echo 'System Test'   
+ deploy-to-int-env: 
+  needs: [integration-test]
+  runs-on: ubuntu-latest
+  steps:   
+    - run: echo 'Deploy to Integration Test Env'   
+ deploy-to-qa: 
+   needs: [system-test] 
    runs-on: ubuntu-latest
    steps:   
-    - run: echo 'Deploy to Test Environment'  
+    - run: echo 'Deploy to QA'  
+ manual-approval: 
+   needs: [system-test] 
+   runs-on: ubuntu-latest
+   steps:   
+    - run: echo 'Wait for Manual Approval'  
+ deploy-to-prod: 
+   needs: [manual-approval] 
+   runs-on: ubuntu-latest
+   steps:   
+    - run: echo 'Deploy to Prod'  
  
 
  
