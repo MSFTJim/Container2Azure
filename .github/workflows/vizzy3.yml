@@ -1,4 +1,4 @@
-name: VisualizeTim
+name: FM Global CICD
 
 on:  
  workflow_dispatch:
